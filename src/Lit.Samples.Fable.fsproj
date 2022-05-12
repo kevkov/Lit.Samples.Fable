@@ -9,6 +9,7 @@
     <Compile Include="App.fs" />
     <Compile Include="IntroToLit\Two.fs" />
     <Compile Include="IntroToLit\One.fs" />
+    <Compile Include="IntroToLit\Four.fs" />
     <Compile Include="IntroToLit\Three.fs" />
   </ItemGroup>
   <ItemGroup>
