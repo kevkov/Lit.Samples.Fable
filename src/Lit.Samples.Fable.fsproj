@@ -9,6 +9,7 @@
     <Compile Include="App.fs" />
     <Compile Include="IntroToLit\Two.fs" />
     <Compile Include="IntroToLit\One.fs" />
+    <Compile Include="IntroToLit\Three.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fable.Lit" Version="1.4.1" />
