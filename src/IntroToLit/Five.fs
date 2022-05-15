@@ -1,7 +1,6 @@
 ﻿module Lit.Samples.IntroToLit.Five
 
 open Browser.Types
-open Fable.Import
 open Lit
 
 [<LitElement("more-expressions")>]

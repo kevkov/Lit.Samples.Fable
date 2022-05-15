@@ -1,7 +1,6 @@
 ﻿module Lit.Samples.IntroToLit.Four
 
 open Browser.Types
-open Fable.Import
 open Lit
 
 [<LitElement("name-tag")>]
