@@ -1,26 +1,32 @@
 ﻿module Lit.Samples.Fable.IntroToLit.Six
 
+open Browser.Types
 open Lit
 
 [<LitElement("todo-list")>]
 let TodoList() =
+    LitElement.init(fun init -> () ) |> ignore
     let listItems, setListItems =
-        LitElement.init(fun init -> () ) |> ignore
         Hook.useState
             [
               {| text = "Start Lit Tutorial"; completed = true |}
               {| text = "Make to-do list"; completed = false |}
             ]
             
+    let inputRef = Hook.useRef<HTMLInputElement>()
     let addToDo _ =
-        ()
+        inputRef.Value |> Option.iter (fun el -> setListItems (listItems @ [{| text = el.value; completed = false |}]))
+       
+    // don't panic
+    let todoText (todo: {| text: string; completed: bool |}) =
+        html $"""<li>{todo.text}</li>"""
         
     html
         $"""
-          <h2>To Do</h2>
-          <ul>
-             <!-- TODO: Render list items. -->
+        <h2>To Do</h2>
+        <ul>
+            {listItems |> List.map todoText}
           </ul>
-          <input id="newitem" aria-label="New item">
+          <input id="newitem" {Lit.refValue inputRef} aria-label="New item">
           <button @click={addToDo}>Add</button>
         """
