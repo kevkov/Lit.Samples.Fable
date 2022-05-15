@@ -1,4 +1,4 @@
-﻿module Lit.TodoMVC.IntroToLit.Four
+﻿module Lit.Samples.IntroToLit.Four
 
 open Browser.Types
 open Fable.Import

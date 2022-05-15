@@ -1,4 +1,4 @@
-﻿module Lit.TodoMVC.IntroToLit.Three
+﻿module Lit.Samples.IntroToLit.Three
 
 open Lit
 

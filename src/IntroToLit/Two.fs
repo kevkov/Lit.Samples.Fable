@@ -1,4 +1,4 @@
-﻿module Lit.TodoMVC.IntroToLit.Two
+﻿module Lit.Samples.IntroToLit.Two
 
 open Lit
 
