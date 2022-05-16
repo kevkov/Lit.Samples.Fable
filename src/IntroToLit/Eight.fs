@@ -49,7 +49,7 @@ let TodoList() =
         <li
           class={if todo.completed then "completed" else ""}
           @click={(fun _ -> toggleCompleted(todo))}>
-        {todo.text}
+          {todo.text}
         </li>"""
         
     let setHideCompleted (e: Event) =
