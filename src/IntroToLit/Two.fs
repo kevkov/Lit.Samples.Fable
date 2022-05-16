@@ -5,7 +5,7 @@ open Lit
 [<LitElement("my-element")>]
 let MyElement() =
     // This call is obligatory to initialize the web component
-    LitElement.init(fun init -> () ) |> ignore
+    LitElement.init(fun _ -> () ) |> ignore
         
     html
         $"""

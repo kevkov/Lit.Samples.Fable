@@ -12,6 +12,7 @@
     <Compile Include="IntroToLit\Four.fs" />
     <Compile Include="IntroToLit\Three.fs" />
     <Compile Include="IntroToLit\Five.fs" />
+    <Compile Include="IntroToLit\Seven.fs" />
     <Compile Include="IntroToLit\Six.fs" />
   </ItemGroup>
   <ItemGroup>

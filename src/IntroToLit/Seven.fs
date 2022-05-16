@@ -1,11 +1,18 @@
-﻿module Lit.Samples.Fable.IntroToLit.Seven
+﻿module Lit.Samples.Fable.IntroToLit.Six
 
 open Browser.Types
 open Lit
 
 [<LitElement("todo-list")>]
 let TodoList() =
-    LitElement.init(fun _ -> ()) |> ignore
+    let css = Lit.css 
+                $"""
+                  .completed {{
+                        text-decoration-line: line-through;
+                        color: #777;
+                  }}
+                """
+    LitElement.init(fun init -> init.styles <- [css] ) |> ignore
     let listItems, setListItems =
         Hook.useState
             [
@@ -24,7 +31,10 @@ let TodoList() =
        
     // don't panic
     let todoText (todo: {| text: string; completed: bool |}) =
-        html $"""<li>{todo.text}</li>"""
+        let classes = Lit.classes [
+                        "completed", todo.completed
+                      ]
+        html $"""<li class={classes}>{todo.text}</li>"""
         
     html
         $"""
