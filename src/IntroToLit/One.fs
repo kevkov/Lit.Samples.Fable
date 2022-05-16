@@ -12,5 +12,5 @@ let MyElement() =
     html
         $"""
             <p>Welcome to the Lit tutorial!</p>
-            <p>This is the ${props.version} code.</p>
+            <p>This is the {props.version} code.</p>
         """
