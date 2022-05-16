@@ -3,6 +3,11 @@
 open Browser.Types
 open Lit
 
+type ToDoItem = {
+  text: string
+  completed: bool
+}
+
 [<LitElement("todo-list")>]
 let TodoList() =
     let css = Lit.css 
@@ -16,8 +21,8 @@ let TodoList() =
     let listItems, setListItems =
         Hook.useState
             [
-              {| text = "Start Lit Tutorial"; completed = true |}
-              {| text = "Make to-do list"; completed = false |}
+              { text = "Start Lit Tutorial"; completed = true }
+              { text = "Make to-do list"; completed = false }
             ]
             
     let inputRef = Hook.useRef<HTMLInputElement>()
@@ -25,16 +30,12 @@ let TodoList() =
         inputRef.Value
         |> Option.iter
                (fun el ->
-                    setListItems (listItems @ [{| text = el.value; completed = false |}])
+                    setListItems (listItems @ [{ text = el.value; completed = false }])
                     el.value <- ""
                 )
        
-    // don't panic
-    let todoText (todo: {| text: string; completed: bool |}) =
-        let classes = Lit.classes [
-                        "completed", todo.completed
-                      ]
-        html $"""<li class={classes}>{todo.text}</li>"""
+    let todoText (todo: ToDoItem) =
+        html $"""<li class={if todo.completed then "completed" else ""}>{todo.text}</li>"""
         
     html
         $"""
