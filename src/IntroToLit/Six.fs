@@ -15,7 +15,12 @@ let TodoList() =
             
     let inputRef = Hook.useRef<HTMLInputElement>()
     let addToDo _ =
-        inputRef.Value |> Option.iter (fun el -> setListItems (listItems @ [{| text = el.value; completed = false |}]))
+        inputRef.Value
+        |> Option.iter
+               (fun el ->
+                    setListItems (listItems @ [{| text = el.value; completed = false |}])
+                    el.value <- ""
+                )
        
     // don't panic
     let todoText (todo: {| text: string; completed: bool |}) =
@@ -27,6 +32,6 @@ let TodoList() =
         <ul>
             {listItems |> List.map todoText}
           </ul>
-          <input id="newitem" {Lit.refValue inputRef} aria-label="New item">
-          <button @click={addToDo}>Add</button>
+        <input id="newitem" {Lit.refValue inputRef} aria-label="New item">
+        <button @click={addToDo}>Add</button>
         """
