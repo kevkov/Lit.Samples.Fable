@@ -1,33 +1,38 @@
-﻿module Lit.Samples.Fable.IntroToLit.Seven
+﻿namespace Lit.Samples.IntroToLit
 
-open Browser.Types
-open Lit
+module Six =
 
-[<LitElement("todo-list")>]
-let TodoList() =
-    LitElement.init(fun _ -> ()) |> ignore
-    let listItems, setListItems =
-        Hook.useState
-            [
-              {| text = "Start Lit Tutorial"; completed = true |}
-              {| text = "Make to-do list"; completed = false |}
-            ]
-            
-    let inputRef = Hook.useRef<HTMLInputElement>()
-    let addToDo _ =
-        inputRef.Value
-        |> Option.iter
-               (fun el ->
-                    setListItems (listItems @ [{| text = el.value; completed = false |}])
-                    el.value <- ""
+    open Browser.Types
+    open Lit
+
+    [<LitElement("todo-list")>]
+    let TodoList () =
+        LitElement.init (fun _ -> ()) |> ignore
+
+        let listItems, setListItems =
+            Hook.useState [ {| text = "Start Lit Tutorial"
+                               completed = true |}
+                            {| text = "Make to-do list"
+                               completed = false |} ]
+
+        let inputRef =
+            Hook.useRef<HTMLInputElement> ()
+
+        let addToDo _ =
+            inputRef.Value
+            |> Option.iter (fun el ->
+                setListItems (
+                    listItems
+                    @ [ {| text = el.value; completed = false |} ]
                 )
-       
-    // don't panic
-    let todoText (todo: {| text: string; completed: bool |}) =
-        html $"""<li>{todo.text}</li>"""
-        
-    html
-        $"""
+
+                el.value <- "")
+
+        // don't panic
+        let todoText (todo: {| text: string; completed: bool |}) = html $"""<li>{todo.text}</li>"""
+
+        html
+            $"""
         <h2>To Do</h2>
         <ul>
             {listItems |> List.map todoText}

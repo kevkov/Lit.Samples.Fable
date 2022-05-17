@@ -1,13 +1,15 @@
-﻿module Lit.Samples.IntroToLit.Two
+﻿namespace Lit.Samples.IntroToLit
 
-open Lit
+module Two =
 
-[<LitElement("my-element")>]
-let MyElement() =
-    // This call is obligatory to initialize the web component
-    LitElement.init(fun _ -> () ) |> ignore
-        
-    html
-        $"""
+    open Lit
+
+    [<LitElement("my-element")>]
+    let MyElement () =
+        // This call is obligatory to initialize the web component
+        LitElement.init (fun _ -> ()) |> ignore
+
+        html
+            $"""
             <p>Hello world! From my-element.</p>
         """

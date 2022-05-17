@@ -1,6 +1,6 @@
 ﻿namespace Lit.Samples.WorkingWithLists
 
-module One =
+module Two =
 
     open Lit
 
