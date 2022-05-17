@@ -3,25 +3,19 @@
 module Two =
 
     open Lit
+    
+    let map (items: seq<'t>) f =
+        Seq.map f items
 
     [<LitElement("my-element")>]
     let MyElement () =
         LitElement.init () |> ignore
 
+        let items, _ = Hook.useState(Set(["Apple"; "Banana"; "Grape"; "Orange"; "Lime"]))
         html
             $"""
-      <h1>Rendering lists with Lit</h1>
-        <p>Lit has built-in support for any iterables!</p>
-        <h2>Array</h2>
-        <p>
-          {[| "✨"; "🔥"; "❤️" |]}
-        </p>
-      <h2>Set</h2>
-      <p>
-        {Set([ 'A', 'B', 'C' ])}
-      </p>
-        <h2>Generator</h2>
-      <p>
-        {seq { for i in 1..4 -> i }}
-      </p>
+            <p>My unique fruits</p>
+      <ul>
+        {map items (fun item -> html $"<li>{item}</li>")}
+      </ul>
       """
