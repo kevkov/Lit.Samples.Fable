@@ -9,7 +9,7 @@ module Extensions =
         member __.filter(f) =
             Array.filter f __            
 
-module Two =
+module Three =
 
     open Lit
     open Extensions

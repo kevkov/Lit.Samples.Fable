@@ -1,30 +1,48 @@
 ﻿namespace Lit.Samples.WorkingWithLists
 
-module Extensions =
-    
-    type List<'t> with
-        member __.map(f) =
-            List.map f __
-            
-        member __.filter(f) =
-            List.filter f __            
-
 module Two =
 
     open Lit
-    open Extensions
 
     [<LitElement("my-element")>]
     let MyElement () =
         LitElement.init () |> ignore
 
-        let items, _ = Hook.useState(["Chandler"; "Phoebe"; "Joey"; "Monica"; "Rachel"; "Ross"])
+        let friends, _ =
+            Hook.useState [ "Harry"
+                            "Ron"
+                            "Hermione" ]
+
+        let pets, _ =
+            Hook.useState [ {| name = "Hedwig"; species = "Owl" |}
+                            {| name = "Scabbers"; species = "Rat" |}
+                            {| name = "Crookshanks"
+                               species = "Cat" |} ]
+
+        let includePets, setIncludePets =
+            Hook.useState false
+
+        let togglePetVisibility _ = setIncludePets (not includePets)
+
+        let listItems =
+            seq {
+                yield!
+                    friends
+                    |> List.map (fun item -> html $"<li>{item}</li>")
+
+                if includePets then
+                    yield!
+                        pets
+                        |> List.map (fun item -> html $"<li>{item.name} ({item.species})</li>")
+            }
+
         html
             $"""
-            <p>A list of names that include the letter "e"</p>
-      <ul>
-        {items
-            .filter(fun item -> item.Contains("e"))
-            .map(fun item -> html $"<li>{item}</li>")}
-      </ul>
-      """
+              <button @click={togglePetVisibility}>
+                 {if includePets then "Hide" else "Show"} pets
+              </button>
+              <p>My magical friends</p>
+              <ul>
+                {listItems}
+              </ul>
+            """
