@@ -17,6 +17,7 @@
     <Compile Include="IntroToLit\Eight.fs" />
     <Compile Include="WorkingWithLists\Two.fs" />
     <Compile Include="WorkingWithLists\One.fs" />
+    <Compile Include="WorkingWithLists\Three.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fable.Lit" Version="1.4.1" />

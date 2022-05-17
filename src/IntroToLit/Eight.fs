@@ -63,7 +63,7 @@ module Eight =
         </li>"""
 
         let setHideCompleted (e: Event) =
-            props.hideCompleted.Value <- (e.target :?> HTMLInputElement).checked
+            props.hideCompleted.Value <- (e.target :?> HTMLInputElement).``checked``
 
         let items =
             if props.hideCompleted.Value then
@@ -82,10 +82,10 @@ module Eight =
         let caughtUpMessage =
             html
                 $"""
-                                  <p>
-                                  You're all caught up!
-                                  </p>
-                                  """
+                  <p>
+                  You're all caught up!
+                  </p>
+                  """
 
         let todosOrMessage =
             if items |> List.length > 0 then
