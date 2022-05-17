@@ -14,5 +14,12 @@ module One =
         <p>
           {["✨"; "🔥"; "❤️"]}
         </p>
-
+      <h2>Set</h2>
+      <p>
+        {Set(['A', 'B', 'C'])}
+      </p>
+            <h2>Generator</h2>
+      <p>
+        {seq { for i in 1 .. 4 -> i }}
+      </p>
       """
