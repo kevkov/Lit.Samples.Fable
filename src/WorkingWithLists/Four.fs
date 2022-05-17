@@ -2,12 +2,12 @@
 
 module Extensions =
     
-    type 'T ``[]`` with
+    type List<'t> with
         member __.map(f) =
-            Array.map f __
+            List.map f __
             
         member __.filter(f) =
-            Array.filter f __            
+            List.filter f __            
 
 module Two =
 
@@ -18,7 +18,7 @@ module Two =
     let MyElement () =
         LitElement.init () |> ignore
 
-        let items, _ = Hook.useState([|"Chandler"; "Phoebe"; "Joey"; "Monica"; "Rachel"; "Ross"|])
+        let items, _ = Hook.useState(["Chandler"; "Phoebe"; "Joey"; "Monica"; "Rachel"; "Ross"])
         html
             $"""
             <p>A list of names that include the letter "e"</p>
