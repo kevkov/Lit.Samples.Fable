@@ -19,6 +19,7 @@
     <Compile Include="WorkingWithLists\One.fs" />
     <Compile Include="WorkingWithLists\Four.fs" />
     <Compile Include="WorkingWithLists\Three.fs" />
+    <Compile Include="WorkingWithLists\Five.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fable.Lit" Version="1.4.1" />
