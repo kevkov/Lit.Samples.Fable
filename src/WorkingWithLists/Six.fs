@@ -7,19 +7,22 @@ module Six =
 
     [<LitElement("my-element")>]
     let MyElement () =
-        LitElement.init () |> ignore
+        let el, _ = LitElement.init (fun _ -> ())
 
         let tasks, setTasks =
-            Hook.useState [ {| id = "a"; label = "Learn Lit" |}
-                            {| id = "b"; label = "Feed the cat" |}
-                            {| id = "c"; label = "Go for a walk" |}
-                            {| id = "d"; label = "Take a nap" |} ]
+            Hook.useState [| {| id = "a"; label = "Learn Lit" |}
+                             {| id = "b"; label = "Feed the cat" |}
+                             {| id = "c"; label = "Go for a walk" |}
+                             {| id = "d"; label = "Take a nap" |} |]
+            
+        let sort dir =
+            tasks |> Array.sortInPlaceWith (fun t1 t2 -> t1.label.CompareTo(t2.label) * dir); el.requestUpdate()
 
         html
             $"""
             <p>Things to do today:</p>
-              <button @click={fun _ -> setTasks (tasks |> List.sortBy (fun t -> t.label))}>Sort ascending</button>
-              <button @click={fun _ -> setTasks (tasks |> List.sortByDescending (fun t -> t.label))}>Sort descending</button>
+              <button @click={fun _ -> sort 1 }>Sort ascending</button>
+              <button @click={fun _ -> sort -1 }>Sort descending</button>
               <ul>
               { tasks |> Lit.mapUnique
                              (fun t -> t.id)
