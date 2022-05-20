@@ -23,6 +23,7 @@
     <Compile Include="WorkingWithLists\Six.fs" />
     <Compile Include="WorkingWithLists\Seven.fs" />
     <Compile Include="Reactivity\OneAndTwo.fs" />
+    <Compile Include="Reactivity\Three.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fable.Lit" Version="1.4.1" />
